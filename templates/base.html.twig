@@ -12,8 +12,228 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-    </head>
-    <body>
-        {% block body %}<h1>Page de départ</h1>{% endblock %}
+        </head>
+        <body>
+        {% block body %}
+        <div class>
+        <canvas id="graphWeight"></canvas>
+        <canvas id="graphHeight"></canvas>
+        <canvas id="graphRight"></canvas>
+        <canvas id="graphLeft"></canvas>
+        <canvas id="graphHead"></canvas>
+        <canvas id="graphControl"></canvas>
+        <canvas id="graphVMAClassic"></canvas>
+        <canvas id="graphVMACooper"></canvas>
+        <canvas id="graphSpeed"></canvas>
+        <canvas id="graphGeneral"></canvas>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            const ctxgraphWeight = document.getElementById('graphWeight');
+            const ctxgraphHeight = document.getElementById('graphHeight');
+            const ctxgraphRight = document.getElementById('graphRight');
+            const ctxgraphLeft = document.getElementById('graphLeft');
+            const ctxgraphHead = document.getElementById('graphHead');
+            const ctxgraphControl = document.getElementById('graphControl');
+            const ctxgraphVMAClassic = document.getElementById('graphVMAClassic');
+            const ctxgraphVMACooper = document.getElementById('graphVMACooper');
+            const ctxgraphSpeed = document.getElementById('graphSpeed');
+            const ctxgraphGeneral = document.getElementById('graphGeneral');
+
+            var chart = new Chart(ctxgraphWeight, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphHeight, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphRight, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphLeft, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphHead, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphControl, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphVMAClassic, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphVMACooper, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphSpeed, {
+                type: 'line',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+            var chart = new Chart(ctxgraphGeneral, {
+                type: 'radar',
+                data: {
+                    labels: [ 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [ 9, 3, 5, 2, 3],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            min: 0, 
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+        </script>
+        {% endblock %}
     </body>
 </html>

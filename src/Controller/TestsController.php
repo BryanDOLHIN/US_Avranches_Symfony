@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Tests;
-use App\Form\DataTransformer\CooperTimeTransformer;
 use App\Repository\UserRepository;
 use App\Form\TestsFormType;
 use Doctrine\ORM\EntityManager;
 use App\Repository\TestsRepository;
+use App\Service\UserVerificationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +21,23 @@ use Symfony\Component\Security\Core\Annotation\IsGranted;
 #[Route('/tests')]
 class TestsController extends AbstractController
 {
-    #[Route('/', name: 'app_tests_index')]
-    public function index(Request $request, UserRepository $userRepository): Response
+
+    private $userVerificationService;
+
+    public function __construct(UserVerificationService $userVerificationService)
     {
+        $this->userVerificationService = $userVerificationService;
+    }
+    
+    #[Route('/', name: 'app_tests_index')]
+    public function index(Request $request, UserRepository $userRepository, TestsRepository $testsRepository): Response
+    {
+        if(!$this->userVerificationService->verifyUser()){
+            return $this->redirectToRoute('app_verif_code', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $tests = $testsRepository->findAll();
+        
         $user = $this->getUser();
         $selectedUserId = $request->query->get('userId');
         $selectedCategory = $request->query->get('category');
@@ -69,6 +83,10 @@ class TestsController extends AbstractController
     #[Route('/new', name: 'app_tests_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TestsRepository $testsRepository, UserRepository $userRepository): Response
     {
+        if(!$this->userVerificationService->verifyUser()){
+            return $this->redirectToRoute('app_verif_code', [], Response::HTTP_SEE_OTHER);
+        }
+
         $test = new Tests();
         
         // Assurez-vous que le champ user n'est pas requis
@@ -114,6 +132,10 @@ class TestsController extends AbstractController
     #[IsGranted("ROLE_SUPER_ADMIN")]
     public function edit(Request $request, TestsRepository $testsRepository, $id): Response
     {
+        if(!$this->userVerificationService->verifyUser()){
+            return $this->redirectToRoute('app_verif_code', [], Response::HTTP_SEE_OTHER);
+        }
+
         $test = $testsRepository->find($id);
 
         if (!$test) {
@@ -144,6 +166,10 @@ class TestsController extends AbstractController
     #[IsGranted("ROLE_SUPER_ADMIN")]
     public function delete(Request $request, TestsRepository $testsRepository, $id): Response
     {
+        if(!$this->userVerificationService->verifyUser()){
+            return $this->redirectToRoute('app_verif_code', [], Response::HTTP_SEE_OTHER);
+        }
+
         $test = $testsRepository->find($id);
 
         if (!$test) {
